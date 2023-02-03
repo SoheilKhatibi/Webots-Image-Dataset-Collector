@@ -6,9 +6,12 @@
 #include <opencv2/opencv.hpp>
 
 
+#include "DatasetCollector.hpp"
+
 
 int main(int argc, char **argv) {
     srand (time(NULL));
+    DatasetCollector datasetCollector;
     // create the Supervisor instance.
     webots::Supervisor *supervisor = new webots::Supervisor();
 
