@@ -47,6 +47,8 @@
 ###
 ### ---- Linked libraries ----
 ### if your program needs additional libraries:
+INCLUDE = -I/usr/include/opencv4/
+LIBRARIES = `pkg-config opencv4 --cflags --libs` -larmadillo
 ### INCLUDE = -I"/my_library_path/include"
 ### LIBRARIES = -L"/path/to/my/library" -lmy_library -lmy_other_library
 ###

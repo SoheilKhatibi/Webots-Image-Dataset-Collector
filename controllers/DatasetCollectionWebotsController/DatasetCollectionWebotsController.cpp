@@ -9,6 +9,10 @@
 // and/or to add some other includes
 #include <webots/Robot.hpp>
 #include <webots/Supervisor.hpp>
+#include <webots/Camera.hpp>
+
+// OpenCV
+#include <opencv2/opencv.hpp>
 
 // All the webots classes are defined in the "webots" namespace
 using namespace webots;
@@ -36,6 +40,9 @@ int main(int argc, char **argv) {
     }
     Field *trans_field = robot_node->getField("translation");
 
+    // Get and enable Camera
+    Camera *cam = supervisor->getCamera("Camera");
+    cam->enable(timeStep);
     // You should insert a getDevice-like function in order to get the
     // instance of a device of the robot. Something like:
     //  Motor *motor = robot->getMotor("motorname");
@@ -53,6 +60,21 @@ int main(int argc, char **argv) {
         const double *values = trans_field->getSFVec3f();
         std::cout << "MY_ROBOT is at position: " << values[0] << ' '
                   << values[1] << ' ' << values[2] << std::endl;
+
+        // Get and show robot image
+        cv::Mat image(cam->getHeight(), cam->getWidth(), CV_8UC3);
+        uint8_t* bgra = (uint8_t *) cam->getImage();
+        // bgra = (uint8_t *) cam->getRecognitionSegmentationImage();
+        for (int i = 0; i < cam->getHeight(); i++) {
+            for (int j = 0; j < cam->getWidth(); j++) {
+                image.at<cv::Vec3b>(i, j)[0] = *bgra++;
+                image.at<cv::Vec3b>(i, j)[1] = *bgra++;
+                image.at<cv::Vec3b>(i, j)[2] = *bgra++;
+                bgra++;
+            }
+        }
+        cv::imshow("preview", image);
+        cv::waitKey(0);
 
 
         // reset robot position and physics

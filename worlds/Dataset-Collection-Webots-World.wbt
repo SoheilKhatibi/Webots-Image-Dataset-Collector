@@ -9,8 +9,8 @@ EXTERNPROTO "webots://projects/objects/balls/protos/FifaSoccerBall.proto"
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.5773502691896257 0.5773502691896257 0.5773502691896257 2.0944
-  position 0 0 10
+  orientation 0.5773501794597087 0.5773504486494181 -0.5773501794597087 2.0944
+  position 0 0 25
 }
 TexturedBackground {
 }
