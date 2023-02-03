@@ -8,6 +8,7 @@
 // <webots/DistanceSensor.hpp>, <webots/Motor.hpp>, etc.
 // and/or to add some other includes
 #include <webots/Robot.hpp>
+#include <webots/Supervisor.hpp>
 
 // All the webots classes are defined in the "webots" namespace
 using namespace webots;
@@ -21,10 +22,10 @@ using namespace webots;
 // "controllerArgs" field of the Robot node
 int main(int argc, char **argv) {
     // create the Robot instance.
-    Robot *robot = new Robot();
+    Supervisor *supervisor = new Supervisor();
 
     // get the time step of the current world.
-    int timeStep = (int)robot->getBasicTimeStep();
+    int timeStep = (int)supervisor->getBasicTimeStep();
 
     // You should insert a getDevice-like function in order to get the
     // instance of a device of the robot. Something like:
@@ -34,7 +35,7 @@ int main(int argc, char **argv) {
 
     // Main loop:
     // - perform simulation steps until Webots is stopping the controller
-    while (robot->step(timeStep) != -1) {
+    while (supervisor->step(timeStep) != -1) {
         // Read the sensors:
         // Enter here functions to read sensor data, like:
         //  double val = ds->getValue();
@@ -47,6 +48,6 @@ int main(int argc, char **argv) {
 
     // Enter here exit cleanup code.
 
-    delete robot;
+    delete supervisor;
     return 0;
 }
