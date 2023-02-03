@@ -19,7 +19,9 @@ TexturedBackgroundLight {
 RobocupSoccerField {
   size "kid"
 }
-RobotisOp3 {
+DEF MY_ROBOT RobotisOp3 {
+  controller "DatasetCollectionWebotsController"
+  supervisor TRUE
 }
 FifaSoccerBall {
   translation 1 0 0.08
