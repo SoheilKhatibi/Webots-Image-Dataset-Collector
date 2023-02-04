@@ -6,7 +6,7 @@ int FieldPading = 15;
 int ScaleToPixel = 5;
 
 SoccerField::SoccerField() {
-
+    fieldMat = drawField();
 }
 
 cv::Mat SoccerField::drawField() {

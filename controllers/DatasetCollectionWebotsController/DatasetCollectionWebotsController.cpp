@@ -18,6 +18,8 @@ int main(int argc, char **argv) {
     // get the time step of the current world.
     int timeStep = (int)supervisor->getBasicTimeStep();
 
+
+    // Get robot node
     webots::Node *robot_node = supervisor->getFromDef("MY_ROBOT");
     if (robot_node == NULL) {
         std::cerr << "No DEF MY_ROBOT node found in the current world file" << std::endl;
@@ -29,6 +31,10 @@ int main(int argc, char **argv) {
     webots::Camera *cam = supervisor->getCamera("Camera");
     cam->enable(timeStep);
 
+    // Add robot to datasetCollector
+    DatasetCollection::Robot robot(robot_node, cam);
+    datasetCollector.addRobot(robot);
+
     int simulationTime = 0;
     while (supervisor->step(timeStep) != -1) {
         simulationTime += timeStep;
@@ -39,19 +45,10 @@ int main(int argc, char **argv) {
                   << values[1] << ' ' << values[2] << std::endl;
 
         // Get and show robot image
-        cv::Mat image(cam->getHeight(), cam->getWidth(), CV_8UC3);
-        uint8_t* bgra = (uint8_t *) cam->getImage();
-        // bgra = (uint8_t *) cam->getRecognitionSegmentationImage();
-        for (int i = 0; i < cam->getHeight(); i++) {
-            for (int j = 0; j < cam->getWidth(); j++) {
-                image.at<cv::Vec3b>(i, j)[0] = *bgra++;
-                image.at<cv::Vec3b>(i, j)[1] = *bgra++;
-                image.at<cv::Vec3b>(i, j)[2] = *bgra++;
-                bgra++;
-            }
-        }
-        cv::imshow("preview", image);
+        cv::imshow("preview", datasetCollector.robots[0].getImage());
         cv::waitKey(0);
+
+        // datasetCollector.robots[0].rePose();
 
 
         // Reposition robot
