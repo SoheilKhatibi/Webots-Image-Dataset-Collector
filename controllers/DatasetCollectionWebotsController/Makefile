@@ -39,7 +39,7 @@
 ###
 ### ---- C++ Sources ----
 ### if your program uses several C++ source files:
-CXX_SOURCES = Robot.cpp SoccerField.cpp DatasetCollector.cpp DatasetCollectionWebotsController.cpp
+CXX_SOURCES = Utils.cpp Robot.cpp SoccerField.cpp DatasetCollector.cpp DatasetCollectionWebotsController.cpp
 ### CXX_SOURCES = my_plugin.cc my_clever_algo.cpp my_graphics.c++
 ###
 ### ---- Compilation options ----
