@@ -5,6 +5,8 @@
 #include <webots/Node.hpp>
 #include <webots/Camera.hpp>
 
+#include "Utils.hpp"
+
 namespace DatasetCollection {
     class Robot {
     public:
@@ -14,6 +16,7 @@ namespace DatasetCollection {
         void setCamera(webots::Camera *cam);
         void setNode(webots::Node *node);
         cv::Mat getImage();
+        void rePose();
         webots::Node *wb_node;
         webots::Camera *wb_cam;
     };

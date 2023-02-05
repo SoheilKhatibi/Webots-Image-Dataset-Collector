@@ -26,6 +26,7 @@ int main(int argc, char **argv) {
         exit(1);
     }
     webots::Field *trans_field = robot_node->getField("translation");
+    webots::Field *rot_field = robot_node->getField("rotation");
 
     // Get and enable Camera
     webots::Camera *cam = supervisor->getCamera("Camera");
@@ -40,30 +41,21 @@ int main(int argc, char **argv) {
         simulationTime += timeStep;
         std::cout << "simulation time: " << simulationTime << std::endl;
 
-        const double *values = trans_field->getSFVec3f();
-        std::cout << "MY_ROBOT is at position: " << values[0] << ' '
-                  << values[1] << ' ' << values[2] << std::endl;
+        const double *trans = trans_field->getSFVec3f();
+        std::cout << "MY_ROBOT is at position: " << trans[0] << ' '
+                  << trans[1] << ' ' << trans[2] << std::endl;
+
+        const double *rot = rot_field->getSFRotation();
+        std::cout << "MY_ROBOT is at rotation: "
+                  << rot[2] * rot[3] << std::endl;
+        //           << rot[0] << ' ' << rot[1] << ' ' << rot[2] << ' ' << rot[3] << std::endl;
 
         // Get and show robot image
         cv::imshow("preview", datasetCollector.robots[0].getImage());
-        cv::waitKey(0);
-
-        // datasetCollector.robots[0].rePose();
-
+        cv::waitKey(1);
 
         // Reposition robot
-        double randx, randy;
-        // double randrot;
-        randx = ((double)rand()) / RAND_MAX * 9 - 4.5;
-        randy = ((double)rand()) / RAND_MAX * 6 - 3;
-        // randrot = ((double)rand()) / RAND_MAX * 6.283185;
-
-        const double INITIAL[3] = {randx, randy, 0.279};
-        trans_field->setSFVec3f(INITIAL);
-
-        // reset robot physics
-        robot_node->resetPhysics();
-
+        datasetCollector.robots[0].rePose();
     };
 
     delete supervisor;
