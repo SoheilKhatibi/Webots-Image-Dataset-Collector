@@ -20,7 +20,7 @@ int main(int argc, char **argv) {
 
 
     // Get robot node
-    webots::Node *robot_node = supervisor->getFromDef("MY_ROBOT");
+    webots::Node *robot_node = supervisor->getFromDef("capturer");
     if (robot_node == NULL) {
         std::cerr << "No DEF MY_ROBOT node found in the current world file" << std::endl;
         exit(1);
@@ -28,9 +28,28 @@ int main(int argc, char **argv) {
     webots::Field *trans_field = robot_node->getField("translation");
     webots::Field *rot_field = robot_node->getField("rotation");
 
+    std::string cameraName = "";
+    int n_devices = supervisor->getNumberOfDevices();
+    for (int i = 0; i < n_devices; i++) {
+        webots::Device *dev = supervisor->getDeviceByIndex(i);
+
+        const std::string name = dev->getName();
+        int type = dev->getNodeType();
+
+        if (type == webots::Node::CAMERA) {
+            cameraName = name;
+            break;
+        }
+    }
+    if (cameraName == "") {
+        std::cerr << "No cameras found in the robot" << std::endl;
+        exit(1);
+    }
+
     // Get and enable Camera
-    webots::Camera *cam = supervisor->getCamera("Camera");
+    webots::Camera *cam = supervisor->getCamera(cameraName);
     cam->enable(timeStep);
+    cam->recognitionEnable(timeStep);
 
     // Add robot to datasetCollector
     DatasetCollection::Robot robot(robot_node, cam);
