@@ -16,6 +16,7 @@ public:
     void addCapturerRobot(DatasetCollection::Robot robot);
     void illustrateCapturersInfo();
     void rePoseObjects();
+    void drawCapturers();
     // void drawRobots();
     // void update();
     // void drawRobotFOVs();

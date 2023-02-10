@@ -8,7 +8,7 @@ public:
     SoccerField();
     cv::Mat fieldMat;
     cv::Mat drawField();
-    cv::Point2f pointOnField2Pixel(cv::Point2f pointOnCourtMeter);
+    cv::Point pointOnField2Pixel(cv::Point2f pointOnCourtMeter);
 };
 
 #endif // SOCCERFIELD_HPP

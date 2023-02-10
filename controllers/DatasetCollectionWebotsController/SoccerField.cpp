@@ -1,9 +1,12 @@
 #include "SoccerField.hpp"
 
-int FieldWidth = 90;
-int FieldHeight = 60;
-int FieldPading = 15;
-int ScaleToPixel = 5;
+float FieldWidth = 9.0;
+float FieldHeight = 6.0;
+float FieldPading = 1.0;
+int PixelPerMeter = 100;
+float WindowWidth = FieldWidth + 2 * FieldPading;
+float WindowHeight = FieldHeight + 2 * FieldPading;
+float Half = 0.5;
 
 SoccerField::SoccerField() {
     fieldMat = drawField();
