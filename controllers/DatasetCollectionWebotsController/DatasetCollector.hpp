@@ -11,9 +11,11 @@ public:
     DatasetCollector();
     SoccerField soccerField;
     // std::vector<SoccerBall> soccerBalls;
-    std::vector<DatasetCollection::Robot> robots;
+    std::vector<DatasetCollection::Robot> capturers;
     cv::Mat baseFigure, figure;
-    void addRobot(DatasetCollection::Robot robot);
+    void addCapturerRobot(DatasetCollection::Robot robot);
+    void illustrateCapturersInfo();
+    void rePoseObjects();
     // void drawRobots();
     // void update();
     // void drawRobotFOVs();

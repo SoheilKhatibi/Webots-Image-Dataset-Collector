@@ -62,3 +62,11 @@ void DatasetCollection::Robot::rePose() {
     // reset robot physics
     wb_node->resetPhysics();
 }
+
+const double *DatasetCollection::Robot::getPosition() {
+    return wb_node->getField("translation")->getSFVec3f();
+}
+
+const double *DatasetCollection::Robot::getRotation() {
+    return wb_node->getField("rotation")->getSFRotation();
+}

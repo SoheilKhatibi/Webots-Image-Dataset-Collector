@@ -25,9 +25,8 @@ int main(int argc, char **argv) {
         std::cerr << "No DEF MY_ROBOT node found in the current world file" << std::endl;
         exit(1);
     }
-    webots::Field *trans_field = robot_node->getField("translation");
-    webots::Field *rot_field = robot_node->getField("rotation");
 
+    // Get camera name and raise error if no camera is found
     std::string cameraName = "";
     int n_devices = supervisor->getNumberOfDevices();
     for (int i = 0; i < n_devices; i++) {
@@ -53,28 +52,17 @@ int main(int argc, char **argv) {
 
     // Add robot to datasetCollector
     DatasetCollection::Robot robot(robot_node, cam);
-    datasetCollector.addRobot(robot);
+    datasetCollector.addCapturerRobot(robot);
 
     int simulationTime = 0;
     while (supervisor->step(timeStep) != -1) {
         simulationTime += timeStep;
         std::cout << "simulation time: " << simulationTime << std::endl;
 
-        const double *trans = trans_field->getSFVec3f();
-        std::cout << "MY_ROBOT is at position: " << trans[0] << ' '
-                  << trans[1] << ' ' << trans[2] << std::endl;
+        datasetCollector.illustrateCapturersInfo();
 
-        const double *rot = rot_field->getSFRotation();
-        std::cout << "MY_ROBOT is at rotation: "
-                  << rot[2] * rot[3] << std::endl;
-        //           << rot[0] << ' ' << rot[1] << ' ' << rot[2] << ' ' << rot[3] << std::endl;
-
-        // Get and show robot image
-        cv::imshow("preview", datasetCollector.robots[0].getImage());
-        cv::waitKey(1);
-
-        // Reposition robot
-        datasetCollector.robots[0].rePose();
+        // Reposition the objects in th field
+        datasetCollector.rePoseObjects();
     };
 
     delete supervisor;

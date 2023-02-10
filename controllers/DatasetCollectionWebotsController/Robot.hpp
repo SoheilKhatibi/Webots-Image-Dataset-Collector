@@ -17,6 +17,8 @@ namespace DatasetCollection {
         void setNode(webots::Node *node);
         cv::Mat getImage();
         void rePose();
+        const double *getPosition();
+        const double *getRotation();
         webots::Node *wb_node;
         webots::Camera *wb_cam;
     };
