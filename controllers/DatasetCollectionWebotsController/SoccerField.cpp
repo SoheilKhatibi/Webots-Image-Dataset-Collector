@@ -56,6 +56,6 @@ cv::Mat SoccerField::drawField() {
     return fieldMatrix;
 }
 
-cv::Point SoccerField::pointOnField2Pixel(cv::Point2f pointOnCourtMeter) {
-    return cv::Point(((WindowHeight * Half) - pointOnCourtMeter.x) * PixelPerMeter, ((WindowWidth * Half) + pointOnCourtMeter.y) * PixelPerMeter);
+cv::Point SoccerField::pointOnField2Pixel(cv::Point2f pointOnFieldMeter) {
+    return cv::Point(((WindowWidth * Half) - pointOnFieldMeter.x) * PixelPerMeter, ((WindowHeight * Half) + pointOnFieldMeter.y) * PixelPerMeter);
 }

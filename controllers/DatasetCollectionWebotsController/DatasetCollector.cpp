@@ -49,6 +49,6 @@ void DatasetCollector::drawCapturers() {
         double r = 25;
         double x = r * cos(robotRot[2] * robotRot[3]);
         double y = r * sin(robotRot[2] * robotRot[3]);
-        cv::line(figure, cv::Point(robotPixels.x + x, robotPixels.y - y), cv::Point(robotPixels.x, robotPixels.y), cv::Scalar(0, 0, 255), 0.5 * 5);
+        cv::line(figure, cv::Point(robotPixels.x, robotPixels.y), cv::Point(robotPixels.x - x, robotPixels.y + y), cv::Scalar(0, 0, 255), 0.5 * 5);
     }
 }
