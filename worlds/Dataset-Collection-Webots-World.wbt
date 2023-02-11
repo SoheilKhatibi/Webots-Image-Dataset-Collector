@@ -1,0 +1,37 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "webots://projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "webots://projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "webots://projects/samples/contests/robocup/protos/RobocupSoccerField.proto"
+EXTERNPROTO "webots://projects/objects/balls/protos/FifaSoccerBall.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.5773501794597087 0.5773504486494181 -0.5773501794597087 2.0944
+  position 0 0 25
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RobocupSoccerField {
+  size "kid"
+}
+DEF capturer Robot {
+  children [
+    Camera {
+      fieldOfView 1.3613
+      width 1080
+      height 720
+      recognition Recognition {
+      }
+    }
+  ]
+  controller "DatasetCollectionWebotsController"
+  supervisor TRUE
+}
+DEF ball FifaSoccerBall {
+  translation 1 0 0.08
+  size 1
+}
