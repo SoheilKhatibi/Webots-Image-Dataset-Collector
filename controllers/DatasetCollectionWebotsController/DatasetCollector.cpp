@@ -2,6 +2,12 @@
 
 DatasetCollector::DatasetCollector() {
     baseFigure = soccerField.fieldMat.clone();
+
+    // Create directory for images
+    std::string stringpath = "../../Pics/";
+    mkdir(stringpath.c_str(), 0777);
+
+    imgCount = 0;
 }
 
 void DatasetCollector::addCapturerRobot(DatasetCollection::Node robot) {

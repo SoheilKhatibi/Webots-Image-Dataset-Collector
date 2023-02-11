@@ -2,6 +2,7 @@
 #define DATASETCOLLECTOR_HPP
 
 #include <opencv2/opencv.hpp>
+#include <sys/stat.h>
 
 #include "SoccerField.hpp"
 #include "Node.hpp"
