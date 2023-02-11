@@ -4,16 +4,16 @@
 #include <opencv2/opencv.hpp>
 
 #include "SoccerField.hpp"
-#include "Robot.hpp"
+#include "Node.hpp"
 
 class DatasetCollector {
 public:
     DatasetCollector();
     SoccerField soccerField;
     // std::vector<SoccerBall> soccerBalls;
-    std::vector<DatasetCollection::Robot> capturers;
+    std::vector<DatasetCollection::Node> capturers;
     cv::Mat baseFigure, figure;
-    void addCapturerRobot(DatasetCollection::Robot robot);
+    void addCapturerRobot(DatasetCollection::Node robot);
     void illustrateCapturersInfo();
     void rePoseObjects();
     void drawCapturers();

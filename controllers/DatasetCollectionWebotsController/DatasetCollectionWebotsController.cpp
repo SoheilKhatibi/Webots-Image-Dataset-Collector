@@ -51,7 +51,7 @@ int main(int argc, char **argv) {
     cam->recognitionEnable(timeStep);
 
     // Add robot to datasetCollector
-    DatasetCollection::Robot robot(robot_node, cam);
+    DatasetCollection::Node robot(robot_node, cam);
     datasetCollector.addCapturerRobot(robot);
 
     int simulationTime = 0;

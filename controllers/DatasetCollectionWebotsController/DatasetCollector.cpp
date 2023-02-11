@@ -4,7 +4,7 @@ DatasetCollector::DatasetCollector() {
     baseFigure = soccerField.fieldMat.clone();
 }
 
-void DatasetCollector::addCapturerRobot(DatasetCollection::Robot robot) {
+void DatasetCollector::addCapturerRobot(DatasetCollection::Node robot) {
     capturers.push_back(robot);
 }
 
