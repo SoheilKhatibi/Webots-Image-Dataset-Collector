@@ -10,9 +10,20 @@ DatasetCollection::Node::Node(webots::Node *node) {
     setNode(node);
 }
 
+DatasetCollection::Node::Node(webots::Node *node, float bpHeight) {
+    setNode(node);
+    setOnFloorBasePointHeight(bpHeight);
+}
+
 DatasetCollection::Node::Node(webots::Node *node, webots::Camera *cam) {
     setNode(node);
     setCamera(cam);
+}
+
+DatasetCollection::Node::Node(webots::Node *node, webots::Camera *cam, float bpHeight) {
+    setNode(node);
+    setCamera(cam);
+    setOnFloorBasePointHeight(bpHeight);
 }
 
 void DatasetCollection::Node::setCamera(webots::Camera *cam) {
@@ -21,6 +32,10 @@ void DatasetCollection::Node::setCamera(webots::Camera *cam) {
 
 void DatasetCollection::Node::setNode(webots::Node *node) {
     wb_node = node;
+}
+
+void DatasetCollection::Node::setOnFloorBasePointHeight(float bpHeight) {
+    onFloorBasePointHeight = bpHeight;
 }
 
 cv::Mat DatasetCollection::Node::getImage() {
@@ -47,7 +62,7 @@ void DatasetCollection::Node::rePose() {
     randx = ((double)rand()) / RAND_MAX * 9 - 4.5;
     randy = ((double)rand()) / RAND_MAX * 6 - 3;
     randrot = ((double)rand()) / RAND_MAX * (2 * M_PI);
-    double translation[3] = {randx , randy , 0.288417};
+    double translation[3] = {randx , randy , onFloorBasePointHeight};
 
     cv::Vec3f euler;
     euler[0] = 0.0;

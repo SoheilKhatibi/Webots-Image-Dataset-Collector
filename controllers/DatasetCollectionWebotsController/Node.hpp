@@ -12,15 +12,19 @@ namespace DatasetCollection {
     public:
         Node();
         Node(webots::Node *node);
+        Node(webots::Node *node, float bpHeight);
         Node(webots::Node *node, webots::Camera *cam);
+        Node(webots::Node *node, webots::Camera *cam, float bpHeight);
         void setCamera(webots::Camera *cam);
         void setNode(webots::Node *node);
+        void setOnFloorBasePointHeight(float bpHeight);
         cv::Mat getImage();
         void rePose();
         const double *getPosition();
         const double *getRotation();
         webots::Node *wb_node;
         webots::Camera *wb_cam;
+        float onFloorBasePointHeight;
     };
 }
 
