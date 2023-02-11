@@ -39,6 +39,10 @@ void DatasetCollector::rePoseObjects() {
     for (auto &capturer : capturers) {
         capturer.rePose();
     }
+
+    for (auto &ball : balls) {
+        ball.rePose();
+    }
 }
 
 void DatasetCollector::drawCapturers() {
