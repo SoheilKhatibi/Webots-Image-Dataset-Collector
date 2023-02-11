@@ -1,29 +1,29 @@
-#include "Robot.hpp"
+#include "Node.hpp"
 
 // using namespace DatasetCollection;
 
-DatasetCollection::Robot::Robot() {
+DatasetCollection::Node::Node() {
 
 }
 
-DatasetCollection::Robot::Robot(webots::Node *node) {
+DatasetCollection::Node::Node(webots::Node *node) {
     setNode(node);
 }
 
-DatasetCollection::Robot::Robot(webots::Node *node, webots::Camera *cam) {
+DatasetCollection::Node::Node(webots::Node *node, webots::Camera *cam) {
     setNode(node);
     setCamera(cam);
 }
 
-void DatasetCollection::Robot::setCamera(webots::Camera *cam) {
+void DatasetCollection::Node::setCamera(webots::Camera *cam) {
     wb_cam = cam;
 }
 
-void DatasetCollection::Robot::setNode(webots::Node *node) {
+void DatasetCollection::Node::setNode(webots::Node *node) {
     wb_node = node;
 }
 
-cv::Mat DatasetCollection::Robot::getImage() {
+cv::Mat DatasetCollection::Node::getImage() {
     // Get and show robot image
     cv::Mat image(wb_cam->getHeight(), wb_cam->getWidth(), CV_8UC3);
     uint8_t* bgra = (uint8_t *) wb_cam->getImage();
@@ -41,7 +41,7 @@ cv::Mat DatasetCollection::Robot::getImage() {
     return image;
 }
 
-void DatasetCollection::Robot::rePose() {
+void DatasetCollection::Node::rePose() {
     double randx, randy;
     double randrot;
     randx = ((double)rand()) / RAND_MAX * 9 - 4.5;
@@ -63,10 +63,10 @@ void DatasetCollection::Robot::rePose() {
     wb_node->resetPhysics();
 }
 
-const double *DatasetCollection::Robot::getPosition() {
+const double *DatasetCollection::Node::getPosition() {
     return wb_node->getField("translation")->getSFVec3f();
 }
 
-const double *DatasetCollection::Robot::getRotation() {
+const double *DatasetCollection::Node::getRotation() {
     return wb_node->getField("rotation")->getSFRotation();
 }
