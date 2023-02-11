@@ -73,6 +73,11 @@ int main(int argc, char **argv) {
 
         datasetCollector.illustrateCapturersInfo();
 
+        // Check if the image should be saved
+        if (datasetCollector.shouldImageBeSaved()) {
+            datasetCollector.saveImage();
+        }
+
         // Reposition the objects in th field
         datasetCollector.rePoseObjects();
     };

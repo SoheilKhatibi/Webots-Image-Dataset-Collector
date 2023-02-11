@@ -61,3 +61,21 @@ void DatasetCollector::drawCapturers() {
         cv::line(figure, cv::Point(robotPixels.x, robotPixels.y), cv::Point(robotPixels.x - x, robotPixels.y + y), cv::Scalar(0, 0, 255), 0.5 * 5);
     }
 }
+
+bool DatasetCollector::shouldImageBeSaved() {
+    int objectNumber = capturers[0].wb_cam->getRecognitionNumberOfObjects();
+    for (int j = 0; j < objectNumber; j++){
+        if (capturers[0].wb_cam->getRecognitionObjects()[j].id == balls[0].wb_node->getId()) {
+            // if (isBallSizeValid(cam->getRecognitionObjects()[j])) {
+            return true;
+            // }
+        }
+    }
+    return false;
+}
+
+void DatasetCollector::saveImage() {
+    // capturers[0].wb_cam->saveRecognitionSegmentationImage("../../Pics/Image" + std::to_string(k) + "_mask.png", 100);
+    capturers[0].wb_cam->saveImage("../../Pics/Image" + std::to_string(imgCount) + ".jpeg", 100);
+    imgCount++;
+}

@@ -19,6 +19,9 @@ public:
     void illustrateCapturersInfo();
     void rePoseObjects();
     void drawCapturers();
+    bool shouldImageBeSaved();
+    void saveImage();
+    int imgCount;
     // void drawRobots();
     // void update();
     // void drawRobotFOVs();
