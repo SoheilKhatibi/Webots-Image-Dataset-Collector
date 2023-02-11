@@ -26,15 +26,16 @@ void DatasetCollector::illustrateCapturersInfo() {
 
         // Get and show robot image
         cv::imshow("capturer " + std::to_string(i), capturers[0].getImage());
+
+        // Draw robot on field
+        figure = baseFigure.clone();
+        drawCapturers();
+        cv::imshow("Field", figure);
     }
     cv::waitKey(1);
 }
 
 void DatasetCollector::rePoseObjects() {
-    figure = baseFigure.clone();
-    drawCapturers();
-    cv::imshow("Field", figure);
-    cv::waitKey(1);
     for (auto &capturer : capturers) {
         capturer.rePose();
     }
@@ -46,9 +47,9 @@ void DatasetCollector::drawCapturers() {
         const double *robotRot = capturer.getRotation();
         cv::Point robotPixels = soccerField.pointOnField2Pixel(cv::Point2f(robotPose[0], robotPose[1]));
 
-        putText(figure, std::to_string(robotPose[0]), cv::Point(20, 20), 1, 1, cv::Scalar(0, 0, 0), 1);
-        putText(figure, std::to_string(robotPose[1]), cv::Point(20, 40), 1, 1, cv::Scalar(0, 0, 0), 1);
-        // putText(figure, std::to_string(simulationTime), cv::Point(20, 60), 1, 1, cv::Scalar(0, 0, 0), 1);
+        // putText(figure, std::to_string(robotPose[0]), cv::Point(20, 20), 1, 1, cv::Scalar(0, 0, 0), 1);
+        // putText(figure, std::to_string(robotPose[1]), cv::Point(20, 40), 1, 1, cv::Scalar(0, 0, 0), 1);
+        // // putText(figure, std::to_string(simulationTime), cv::Point(20, 60), 1, 1, cv::Scalar(0, 0, 0), 1);
         cv::circle(figure, cv::Point(robotPixels.x, robotPixels.y), 13, cv::Scalar(0, 0, 255), 0.2 * 5);
         double r = 25;
         double x = r * cos(robotRot[2] * robotRot[3]);
