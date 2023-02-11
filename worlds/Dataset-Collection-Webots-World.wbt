@@ -31,7 +31,7 @@ DEF capturer Robot {
   controller "DatasetCollectionWebotsController"
   supervisor TRUE
 }
-FifaSoccerBall {
+DEF ball FifaSoccerBall {
   translation 1 0 0.08
   size 1
 }
