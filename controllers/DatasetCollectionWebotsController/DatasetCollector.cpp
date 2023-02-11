@@ -8,6 +8,10 @@ void DatasetCollector::addCapturerRobot(DatasetCollection::Node robot) {
     capturers.push_back(robot);
 }
 
+void DatasetCollector::addBall(DatasetCollection::Node ball) {
+    balls.push_back(ball);
+}
+
 void DatasetCollector::illustrateCapturersInfo() {
     int i = 0;
     for (auto &capturer : capturers) {

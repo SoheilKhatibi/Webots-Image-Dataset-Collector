@@ -12,8 +12,10 @@ public:
     SoccerField soccerField;
     // std::vector<SoccerBall> soccerBalls;
     std::vector<DatasetCollection::Node> capturers;
+    std::vector<DatasetCollection::Node> balls;
     cv::Mat baseFigure, figure;
     void addCapturerRobot(DatasetCollection::Node robot);
+    void addBall(DatasetCollection::Node ball);
     void illustrateCapturersInfo();
     void rePoseObjects();
     void drawCapturers();

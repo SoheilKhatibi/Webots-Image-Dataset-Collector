@@ -28,6 +28,13 @@ int main(int argc, char **argv) {
         exit(1);
     }
 
+    // Get ball node
+    webots::Node *ball_node = supervisor->getFromDef("ball");
+    if (ball_node == NULL) {
+        std::cerr << "No DEF of your ball node found in the current world file" << std::endl;
+        exit(1);
+    }
+
     // Get camera name and raise error if no camera is found
     std::string cameraName = "";
     int n_devices = supervisor->getNumberOfDevices();
@@ -55,6 +62,9 @@ int main(int argc, char **argv) {
     // Add robot to datasetCollector
     DatasetCollection::Node robot(robot_node, cam);
     datasetCollector.addCapturerRobot(robot);
+
+    DatasetCollection::Node ball(ball_node);
+    datasetCollector.addBall(ball);
 
     int simulationTime = 0;
     while (supervisor->step(timeStep) != -1) {
