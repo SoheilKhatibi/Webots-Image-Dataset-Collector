@@ -1,11 +1,13 @@
+// Webots headers
 #include <webots/Robot.hpp>
 #include <webots/Supervisor.hpp>
 #include <webots/Camera.hpp>
 
+//External headers
 // OpenCV
 #include <opencv2/opencv.hpp>
 
-
+// Local headers
 #include "DatasetCollector.hpp"
 
 
@@ -22,7 +24,7 @@ int main(int argc, char **argv) {
     // Get robot node
     webots::Node *robot_node = supervisor->getFromDef("capturer");
     if (robot_node == NULL) {
-        std::cerr << "No DEF MY_ROBOT node found in the current world file" << std::endl;
+        std::cerr << "No DEF of your robot node found in the current world file" << std::endl;
         exit(1);
     }
 
