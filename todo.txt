@@ -1,2 +1,0 @@
-- Complete modularizing and object orientation.
-- Extract required data and create dataset.
