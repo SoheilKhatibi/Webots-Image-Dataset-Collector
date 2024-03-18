@@ -1,2 +1,2 @@
-# Webots-Dataset-Collector
-Webots Dataset Collection Tools For Deep Learning And Computer Vision
+# Webots-Image-Dataset-Collector
+Webots Image Dataset Collection For Computer Vision And Deep Learning
