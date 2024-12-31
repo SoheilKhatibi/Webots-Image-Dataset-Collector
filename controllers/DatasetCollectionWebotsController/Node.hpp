@@ -19,6 +19,7 @@ namespace DatasetCollection {
         void setNode(webots::Node *node);
         void setOnFloorBasePointHeight(float bpHeight);
         cv::Mat getImage();
+        cv::Mat getRecognitionSegmentationImage();
         void rePose();
         const double *getPosition();
         const double *getRotation();

@@ -58,6 +58,7 @@ int main(int argc, char **argv) {
     webots::Camera *cam = supervisor->getCamera(cameraName);
     cam->enable(timeStep);
     cam->recognitionEnable(timeStep);
+    cam->enableRecognitionSegmentation();
 
     // Add robot to datasetCollector
     DatasetCollection::Node robot(robot_node, cam, 0.288417);

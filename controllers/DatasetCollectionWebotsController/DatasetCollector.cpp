@@ -32,6 +32,7 @@ void DatasetCollector::illustrateCapturersInfo() {
 
         // Get and show robot image
         cv::imshow("capturer " + std::to_string(i), capturers[0].getImage());
+        cv::imshow("capturer " + std::to_string(i) + " mask", capturers[0].getRecognitionSegmentationImage());
 
         // Draw robot on field
         figure = baseFigure.clone();
@@ -81,7 +82,7 @@ bool DatasetCollector::shouldImageBeSaved() {
 }
 
 void DatasetCollector::saveImage() {
-    // capturers[0].wb_cam->saveRecognitionSegmentationImage("../../Pics/Image" + std::to_string(k) + "_mask.png", 100);
-    capturers[0].wb_cam->saveImage("../../Pics/Image" + std::to_string(imgCount) + ".jpeg", 100);
+    capturers[0].wb_cam->saveRecognitionSegmentationImage("../../Pics/Image" + std::to_string(imgCount) + "_mask.png", 100);
+    capturers[0].wb_cam->saveImage("../../Pics/Image" + std::to_string(imgCount) + ".png", 100);
     imgCount++;
 }
