@@ -1,8 +1,8 @@
-#VRML_SIM R2023b utf8
+#VRML_SIM R2024a utf8
 
 EXTERNPROTO "webots://projects/objects/backgrounds/protos/TexturedBackground.proto"
 EXTERNPROTO "webots://projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
-EXTERNPROTO "webots://projects/samples/contests/robocup/protos/RobocupSoccerField.proto"
+EXTERNPROTO "../protos/RobocupSoccerField.proto"
 EXTERNPROTO "webots://projects/objects/balls/protos/FifaSoccerBall.proto"
 
 WorldInfo {
@@ -25,6 +25,7 @@ DEF capturer Robot {
       width 1080
       height 720
       recognition Recognition {
+        segmentation TRUE
       }
     }
   ]
